@@ -1,0 +1,28 @@
+{
+  "name": "mongoscraping",
+  "version": "1.0.0",
+  "description": "App using Mongoose and Cheerio to scrape news from the web and to allow users to comment on the news.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mstorino/mongoScraping.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mstorino/mongoScraping/issues"
+  },
+  "homepage": "https://github.com/mstorino/mongoScraping#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cheerio": "^1.0.0-rc.1",
+    "express": "^4.15.3",
+    "express-handlebars": "^3.0.0",
+    "mongoose": "^4.10.4",
+    "request": "^2.81.0"
+  }
+}

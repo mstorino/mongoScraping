@@ -1,0 +1,45 @@
+<div class="jumbotron">
+	<h1>Articles</h1>
+	<p>Click on an article to read it, save it to read later, or add a comment.</p>
+</div>
+
+{{#each articles}}
+	<h1>{{this.title}}</h1>
+        <p class="summary">{{this.summary}}</p>	
+        <div>
+            <div class="more label"><a href="{{this.link}}" target="_blank" class="form-control" id="title">Read More</a></div> 
+            <div class="tags">
+                <span class="btn-info">
+	                <form action="/saved/{{this.id}}" method="POST">
+						<button type="submit" class="btn btn-secondary">Save Article</button>
+					</form>
+				</span>
+				<span class="btn-info">
+					<form action='/articles/{{this.id}}' method="GET">
+						<button type="submit" class="btn btn-secondary">Comment</button>
+					</form>
+				</span>
+            </div>    
+        </div> 
+        <div class="clear"></div>
+        <hr>
+{{/each}}
+
+{{!-- {{#each articles}}
+	<div class="input-group">
+		<a href="{{this.link}}" target="_blank" class="form-control" id="title">{{this.title}} </a>
+	
+		<p class="summary">{{this.summary}}</p>		
+		<span class="input-group-btn">		
+			<form action="/saved/{{this.id}}" method="POST">
+				<button type="submit" class="btn btn-secondary">Save Article</button>
+			</form>
+		</span>
+		<span class="input-group-btn">
+			<form action='/articles/{{this.id}}' method="GET">
+				<button type="submit" class="btn btn-secondary">Comment</button>
+			</form>
+		</span>
+	</div>
+	<br>
+{{/each}} --}}

@@ -1,0 +1,24 @@
+/*.jumbotron {
+	margin-top:8%;
+}*/
+
+.clear {
+    clear:both;    
+}
+.btn-info {
+    margin-right:15px;
+    text-transform:uppercase;
+    padding:10px;
+    display:block;
+    float:left;
+}
+.btn-secondary {
+    display:block;
+    text-decoration:none;
+    width:100%;
+    height:100%;
+    color:#fff;
+}
+.more.label {
+    float:right;    
+}

@@ -1,0 +1,43 @@
+<div class="jumbotron">
+  <h2><a href="{{article.link}}" target="_blank">{{article.title}}</a></h2>
+</div>
+
+<form class="form-horizontal" action="/articles/{{article.id}}" method="POST">
+  <div class="form-group">
+    <label for="title" class="col-sm-1 control-label">Title</label>
+    <div class="col-sm-10">
+      <textarea class="form-control" type="text" rows="1" id="title" name="title" required="true"></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="body" class="col-sm-1 control-label">Note</label>
+    <div class="col-sm-10">
+      <textarea class="form-control" rows="4" id="body" name="body" required="true"></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-1 col-sm-10">
+      <button class="btn btn-default" type="submit">Add Note</button>
+    </div>
+  </div>
+</form>
+
+{{#if article.notes}}
+    {{#each article.notes}}
+      <div class="panel panel-default">
+        <div class="panel-heading input-group">
+          <h3 class="panel-title">{{this.title}}</h3>
+          <span class="input-group-btn">     
+            <form action="/articles/{{../article.id}}/delete/{{this.id}}" method="POST">
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+          </span>
+        </div>
+        <div class="panel-body">
+          {{this.body}}
+        </div>
+      </div>
+    {{/each}}
+{{else}}
+  SAY SOMETHING
+{{/if}}
