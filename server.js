@@ -67,7 +67,7 @@ app.get('/scrape', function(req, res) {
         result.title = $(this).children('h3').children('a').attr('title'); 
         result.link = 'https://food52.com' + $(this).children('h3').children('a').attr('href');
         result.summary = $(this).children('h3').children('div.meta').children('a').text();
-        result.image = $(this).children('div.photo-block').children('div.td-module-thumb').children('a').children('img').attr('src');
+        result.image = $(this).children('div.photo-block').children('a').children('img.quick-basket-img').attr('src');
           
             Article.count({ title: result.title}, function (err, test){
 
