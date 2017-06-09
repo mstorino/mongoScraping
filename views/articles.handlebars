@@ -4,26 +4,28 @@
 </div>
 
 {{#each articles}}
-	<h1>{{this.title}}</h1>
-        <p class="summary">{{this.summary}}</p>	
-        <div>
-            <div class="more label"><a href="{{this.link}}" target="_blank" class="form-control" id="title">Read More</a></div> 
-            <img alt="{{this.title}}" src="{{this.image}}">
-            <div class="tags">
-                <span class="btn-info">
-	                <form action="/saved/{{this.id}}" method="POST">
-						<button type="submit" class="btn btn-secondary">Save Article</button>
-					</form>
-				</span>
-				<span class="btn-info">
-					<form action='/articles/{{this.id}}' method="GET">
-						<button type="submit" class="btn btn-secondary">Comment</button>
-					</form>
-				</span>
-            </div>    
-        </div> 
-        <div class="clear"></div>
-        <hr>
+	{{#if this.unsaved}}
+		<h1>{{this.title}}</h1>
+	        <p class="summary">{{this.summary}}</p>	
+	        <div>
+	            <div class="more label"><a href="{{this.link}}" target="_blank" class="form-control" id="title">Read More</a></div> 
+	            <img alt="{{this.title}}" src="{{this.image}}">
+	            <div class="tags">
+	                <span class="btn-info">
+		                <form action="/saved/{{this.id}}" method="POST">
+							<button type="submit" class="btn btn-secondary">Save Article</button>
+						</form>
+					</span>
+					<span class="btn-info">
+						<form action='/articles/{{this.id}}' method="GET">
+							<button type="submit" class="btn btn-secondary">Comment</button>
+						</form>
+					</span>
+	            </div>    
+	        </div> 
+	        <div class="clear"></div>
+	        <hr>
+	{{/if}}
 {{/each}}
 
 {{!-- {{#each articles}}

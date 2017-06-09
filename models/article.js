@@ -19,9 +19,9 @@ var ArticleSchema = new Schema({
     type: String,
     required: false
   },
-  saved: {
+  unsaved: {
     type: Boolean,
-    default: false
+    default: true
   },
   image: {
         type: String,

@@ -204,7 +204,7 @@ app.post('/articles/:id', function(req, res) {
 //Get route to display saved articles
 app.get('/saved', function(req, res)  {
   //Finds articles where saved is true
-  Article.find({ 'saved' : true }, function(err, doc) {
+  Article.find({ 'unsaved' : false }, function(err, doc) {
     if (err) {
       console.log(err);
     }  else {
@@ -218,7 +218,7 @@ app.get('/saved', function(req, res)  {
 
 //Setting route to update an article to saved = true if user clicks "save article"
 app.post('/saved/:id', function(req, res)  {
-  Article.update({ '_id' : req.params.id }, { $set : { 'saved' : true }}, function(err, doc) {
+  Article.update({ '_id' : req.params.id }, { $set : { 'unsaved' : false }}, function(err, doc) {
   res.redirect('/articles');
 })
 }); 
@@ -226,7 +226,7 @@ app.post('/saved/:id', function(req, res)  {
 //Unsaves article
 app.post('/unsaved/:id', function(req, res) {
   //Updates article with parametre _id by setting parameter saved to false
-  Article.update( { '_id' : req.params.id }, { $set : { 'saved' : false }}, function(err, doc) {
+  Article.update( { '_id' : req.params.id }, { $set : { 'unsaved' : true }}, function(err, doc) {
   //Redirects to saved articles
   res.redirect('/saved');
 });
