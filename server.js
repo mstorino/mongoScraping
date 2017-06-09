@@ -57,16 +57,18 @@ app.get("/", function (req, res) {
 app.get('/scrape', function(req, res) {
 
   // First, grab the body of the html with request
-  request('http://www.slate.com/full_slate.html', function(error, response, html) {
+  request('https://food52.com/recipes', function(error, response, html) {
 
     var $ = cheerio.load(html);
 
-    $('div.tile').each(function(i, element) {
+    $('div.collectable-tile').each(function(i, element) {
         var result = {};
-        result.title = $(this).children('div.full-tile').children('span.hed').text(); 
-        result.link = $(this).children('a').attr('href');
-        result.summary = $(this).children('div.full-tile').children('span.dek').text(); 
-             
+
+        result.title = $(this).children('h3').children('a').attr('title'); 
+        result.link = 'https://food52.com' + $(this).children('h3').children('a').attr('href');
+        result.summary = $(this).children('h3').children('div.meta').children('a').text();
+        result.image = $(this).children('div.photo-block').children('div.td-module-thumb').children('a').children('img').attr('src');
+          
             Article.count({ title: result.title}, function (err, test){
 
                 // Using the Article model, create a new entry (note that the "result" object has the exact same key-value pairs of the model)
@@ -233,6 +235,6 @@ app.post('/unsaved/:id', function(req, res) {
 
 
 // Listen on port 3000
-app.listen(3000, function() {
-  console.log("App running on port 3000!");
+app.listen(2020, function() {
+  console.log("App running on port 2020!");
 });
