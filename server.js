@@ -153,45 +153,26 @@ app.get('/articles/:id', function(req, res) {
   });
 });
 
-//Post new comments
-// app.post('/articles/:id', function(req, res)  {
-//   var newNote = new Note(req.body);
-
-//   //Saves new comment via Mongoose
-//   newNote.save( function(err, doc) {
-//     //If error, console log error
-//     if (err) {
-//       console.log(err);
-//       //Else updates article with id :id to include a new comment with same id
-//     } else {
-//       var articleId = req.params.id;
-//       Article.findOneAndUpdate({'_id': articleId}, {'notes': doc._id})
-//         .exec( function(err, doc)  {
-//           if (err) {
-//             console.log(err);
-//           } else {
-//             //Redirects to the specific article's comment page
-//             res.redirect('/articles/' + articleId);
-//           }
-//         });
-//     }
-//   });
-// });
-
+//Post new notes
 
 app.post('/articles/:id', function(req, res) {
 
     var newNote = new Note(req.body);
 
+    //Save new note via Mongoose
+
     newNote.save(function(error, doc) {
       if(error) {
         console.log(error);
+
+        //update article with id = :id to include new note with the same id
       } else {
 
         Article.findOneAndUpdate({ "_id": req.params.id }, { $push: {"notes": doc._id} }, {new: true}, function(err, newdoc) {
           if (err) {
             res.send(err);
           } else {
+            //redirect to the articles comment page
             res.redirect('/articles/' + req.params.id);
           }
         });
@@ -199,6 +180,30 @@ app.post('/articles/:id', function(req, res) {
     });
   });
 
+
+//Post route to delete a note
+
+app.post('/articles/:articleId/delete/:noteId', function(req, res)  {
+  var articleId = req.params.articleId;
+  var noteId = req.params.noteId;
+  //Update method to search for url id and access note w/ specific noteId in url
+  Article.update({'_id': articleId}, {$pull: {'note': noteId}}, {'multi': false}, function(err, res) {
+    //consoles error
+    if (err) {
+      console.log(err);
+      //else removes note w/ the specified noteId
+    } else {
+      Note.remove({'_id': noteId}, function(err, res) {
+        if(err) {
+          console.log(err);
+        } else {
+          console.log('Note deleted');
+        }
+      });
+    }
+  });
+  res.redirect('/articles/' + articleId);
+});
 
 
 //Get route to display saved articles

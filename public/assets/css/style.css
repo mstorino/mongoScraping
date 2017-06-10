@@ -6,23 +6,29 @@
     clear:both;    
 }
 .btn-info {
-    margin-right:4px;
-    text-transform:uppercase;
-    padding:10px;
-    display:block;
-    float:left;
+    /*margin-right:4px;
+    text-transform:uppercase;*/
+    /*padding:10px;*/
+   /* display:block;
+    float:left;*/
+    display: inline-block;
+    margin: 10px auto 0px auto;
 }
-.btn-secondary {
+/*.btn-secondary {
     display:block;
-   /* text-decoration:none;*/
+    text-decoration:none;
     width:100%;
     height:100%;
     color:#fff;
-}
+}*/
 /*.more.label {
     float:right;    
 }*/
 
 .recipeBlock {
     min-height: 660px;
+}
+
+.recipeImg {
+    width: 100%;
 }
