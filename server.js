@@ -79,7 +79,7 @@ app.get('/scrape', function(req, res) {
             });
     });
   // Tell the user that we finished scraping Reddit
-  res.render("scrapeComplete", {title: "Title Of Site"});
+  res.render("scrapeComplete", {title: "food52"});
   });
 });
 

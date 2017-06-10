@@ -1,32 +1,38 @@
 <div class="jumbotron">
-	<h1>Articles</h1>
-	<p>Click on an article to read it, save it to read later, or add a comment.</p>
+	<h1>Recipes</h1>
+	<p>Click on a recipe to read it on food52, save it to read later, or add a comment.</p>
 </div>
-
-{{#each articles}}
-	{{#if this.unsaved}}
-		<h1>{{this.title}}</h1>
-	        <p class="summary">{{this.summary}}</p>	
-	        <div>
-	            <div class="more label"><a href="{{this.link}}" target="_blank" class="form-control" id="title">Read More</a></div> 
-	            <img alt="{{this.title}}" src="{{this.image}}">
-	            <div class="tags">
-	                <span class="btn-info">
-		                <form action="/saved/{{this.id}}" method="POST">
-							<button type="submit" class="btn btn-secondary">Save Article</button>
-						</form>
-					</span>
-					<span class="btn-info">
-						<form action='/articles/{{this.id}}' method="GET">
-							<button type="submit" class="btn btn-secondary">Comment</button>
-						</form>
-					</span>
-	            </div>    
-	        </div> 
-	        <div class="clear"></div>
-	        <hr>
-	{{/if}}
-{{/each}}
+<div class="row">
+	
+		{{#each articles}}
+			{{#if this.unsaved}}
+			<div class="col-md-3 recipeBlock">
+				<h2>{{this.title}}</h2>
+			        <h3 class="summary">By: {{this.summary}}</h3>
+			        <div class="more label"><a href="{{this.link}}" target="_blank" class="form-control" id="title">Read More</a></div> 
+			        <div>
+			            
+			            <img alt="{{this.title}}" src="{{this.image}}">
+			            <div class="tags">
+			                <span class="btn-info">
+				                <form action="/saved/{{this.id}}" method="POST">
+									<button type="submit" class="btn btn-secondary">Save Recipe</button>
+								</form>
+							</span>
+							<span class="btn-info">
+								<form action='/articles/{{this.id}}' method="GET">
+									<button type="submit" class="btn btn-secondary">Comment</button>
+								</form>
+							</span>
+			            </div>    
+			        </div> 
+			        {{!-- <div class="clear"></div>
+			        <hr> --}}
+			</div>  
+			{{/if}}
+		{{/each}}
+	
+</div>
 
 {{!-- {{#each articles}}
 	<div class="input-group">
